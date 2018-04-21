@@ -75,14 +75,15 @@ def search_in_file():
         new_list = []  # Каждый раз на шаге создаем пустой список для его наполнения нашими "совпадениями" по поиску
         new_list = [name_file for name_file in list_file_sql if contains(name_file, search, dir_name)]
 
+        if len(new_list)==0:
+            print('!! Фалов удовлетворяющим условиям поиска не найдено !!')
+            break
+
         list_file_sql = new_list  # Вот не сразу сообразил как переопределить список для нового поиска
 
-        if len(new_list) > 2:
-            print("Результат поиска:{} файлов".format(len(new_list)))
-        else:
-            print("Результат поиска:{} файл(а)".format(len(new_list)))
-            for i in new_list:
-                print("Файл(ы) находится по пути:\n{}".format(os.path.join(dir_name, i)))
+        print("Результат поиска:{} файлов".format(len(new_list)))
+        for i in new_list:
+            print("Путь к файлу: {}".format(os.path.join(dir_name, i)))
 
 
 if __name__ == '__main__':
