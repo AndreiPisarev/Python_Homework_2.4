@@ -58,6 +58,14 @@ def list_file():
     return list_file_sql, dir_name  # Возвращаем список фалов sql и абс. путь до Migration
 
 
+def contains(name_file, search, dir_name):
+
+    with open(os.path.join(dir_name, name_file)) as f:
+        file_data = f.read()
+        if search in file_data:
+            return True
+
+
 def search_in_file():
 
     list_file_sql, dir_name = list_file()  # Вызываем функцию list_file()
@@ -65,15 +73,7 @@ def search_in_file():
     while True:
         search = input('Введите ключевое слово (символ) для поиска:')
         new_list = []  # Каждый раз на шаге создаем пустой список для его наполнения нашими "совпадениями" по поиску
-
-        for name_file in list_file_sql:  # Перебираем список фалов, открываем, "поиск"
-
-            with open(os.path.join(dir_name, name_file)) as f:
-                file_data = f.read()
-
-                if search in file_data:  # Если введеное слово есть в файле, то добавляем имя фала в новый_список
-                    new_list.append(name_file)
-                # new_list = [name_file for name_file in list_file_sql if search in file_data]  # Даже так пробывал)
+        new_list = [name_file for name_file in list_file_sql if contains(name_file, search, dir_name)]
 
         list_file_sql = new_list  # Вот не сразу сообразил как переопределить список для нового поиска
 
