@@ -85,13 +85,5 @@ def search_in_file():
                 print("Файл(ы) находится по пути:\n{}".format(os.path.join(dir_name, i)))
 
 
-def main():
+if __name__ == '__main__':
     search_in_file()
-
-
-main()
-
-# Как начать с этого не понял...
-# if __name__ == '__main__':
-#     # ваша логика
-#     pass
