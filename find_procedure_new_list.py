@@ -53,7 +53,7 @@ def list_file():
     dir_name = os.path.join(current_dir, migrations)  # Разбил на 2 строки для получения абс. пути до файлов
     list_dir = os.listdir(dir_name)
     list_file_sql = list()
-    list_file_sql = [i for i in list_dir if '.sql' in i]  # Фильтруем список фалов содержанию в имени '.sql'
+    list_file_sql = [file for file in list_dir if file.endswith('.sql')]  # Фильтруем список фалов содер. в имени '.sql'
     print("Количество .sql файлов для поиска: {}".format(len(list_file_sql)))
     return list_file_sql, dir_name  # Возвращаем список фалов sql и абс. путь до Migration
 
